@@ -1,0 +1,18 @@
+header {
+	display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+	background-color: $dark-grey;
+	padding: 0 20px 0 20px;
+
+	h1 {
+		color: $middle-blue;
+	}
+
+	nav {
+		display: flex;
+		color: $light-blue;
+		column-gap: 50px;
+	}
+}

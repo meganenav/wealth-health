@@ -1,0 +1,42 @@
+form {
+    width: 400px;
+
+    input, select {
+        width: 395px;
+        height: 25px;
+        border-radius: 5px;
+        border: 2px solid black;
+    }
+
+    select {
+        width: 400px;
+        height: 28px;
+    }
+
+    label {
+        display: block;
+        margin-top: 1rem;
+        margin-bottom: 10px;
+    }
+    
+    .address {
+        margin-top: 10px;
+        
+        input {
+            width: 365px;
+        }
+        select {
+            width: 370px;
+        }
+    }
+}
+
+button {
+    margin-top: 20px;
+    background-color: $dark-grey;
+    color: $light-blue;
+    width: 150px;
+    height: 30px;
+    border-radius: 5px;
+    font-size: 1em;
+}
