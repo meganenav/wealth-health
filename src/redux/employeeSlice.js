@@ -12,7 +12,7 @@ const employeeSlice = createSlice({
 		state.employees = [...state.employees, action.payload]
 	},
 	resetStore: (state) => {
-		state.employees = ""
+		state.employees = []
 	},
   },
 })

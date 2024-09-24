@@ -1,6 +1,8 @@
 import React, { useState } from "react"
 import { useDispatch } from "react-redux"
 import Select from "react-dropdown-select"
+import DatePicker from "react-datepicker"
+import "react-datepicker/dist/react-datepicker.css"
 import { addEmployee } from "../../../redux/employeeSlice"
 import { states } from "../../../data/statesList"
 import { departments } from "../../../data/departmentsList"
@@ -8,13 +10,14 @@ import { departments } from "../../../data/departmentsList"
 export default function Form() {
     const [newFirstName, setNewFirstName] = useState("")
     const [newLastName, setNewLastName] = useState("")
-    const [newDateOfBirth, setNewDateOfBirth] = useState("")
-    const [newStartDate, setNewStartDate] = useState("")
+    const [newDateOfBirth, setNewDateOfBirth] = useState(new Date())
+    const [newStartDate, setNewStartDate] = useState(new Date())
     const [newAddressStreet, setNewAddressStreet] = useState("")
     const [newAddressCity, setNewAddressCity] = useState("")
     const [newAddressState, setNewAddressState] = useState("")
     const [newAddressZipCode, setNewAddressZipCode] = useState("")
     const [newDepartment, setNewDepartment] = useState("")
+
     const dispatch = useDispatch()
 
     const handleSubmit = (e) => {
@@ -22,8 +25,8 @@ export default function Form() {
         const employeeData = {
             firstName: newFirstName,
             lastName: newLastName,
-            dateOfBirth: newDateOfBirth,
-            startDate: newStartDate,
+            dateOfBirth: newDateOfBirth.getTime(),
+            startDate: newStartDate.getTime(),
             address: {
                 street: newAddressStreet,
                 city: newAddressCity,
@@ -37,8 +40,8 @@ export default function Form() {
 
         setNewFirstName("")
         setNewLastName("")
-        setNewDateOfBirth("")
-        setNewStartDate("")
+        setNewDateOfBirth(new Date())
+        setNewStartDate(new Date())
         setNewAddressStreet("")
         setNewAddressCity("")
         setNewAddressState("")
@@ -58,13 +61,11 @@ export default function Form() {
                     <input type="text" id="lastName" name="lastName" value={newLastName} 
                     onChange={(e) => setNewLastName(e.target.value)} />
 
-                    <label htmlFor="dateOfBirth">Date of Birth</label>
-                    <input type="text" id="dateOfBirth" name="dateOfBirth" value={newDateOfBirth} 
-                    onChange={(e) => setNewDateOfBirth(e.target.value)} />
+                    <label>Date of Birth</label>
+                    <DatePicker selected={newDateOfBirth} onChange={(date) => setNewDateOfBirth(date)} />
 
-                    <label htmlFor="startDate">Start Date</label>
-                    <input type="text" id="startDate" name="startDate" value={newStartDate} 
-                    onChange={(e) => setNewStartDate(e.target.value)} />
+                    <label>Start Date</label>
+                    <DatePicker selected={newStartDate} onChange={(date) => setNewStartDate(date)} />
 
                     <fieldset className="address">
                         <legend>Address</legend>

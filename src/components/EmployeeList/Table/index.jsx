@@ -9,7 +9,7 @@ export default function Table() {
 	if(employees.length !== 0) {
 		displayEmployees = employees.map((employee, index) => (
 			<li key={index}>
-				{ employee.firstName } {employee.lastName}, {employee.address.state}, {employee.department}
+				{ employee.firstName } {employee.lastName}, {employee.address.state}, {employee.department}, {new Date(employee.dateOfBirth).toLocaleDateString()}
 			</li>
 		))
 	}
