@@ -1,9 +1,9 @@
 import React, { useState } from "react"
 import { useDispatch } from "react-redux"
+import Select from "react-dropdown-select"
 import { addEmployee } from "../../../redux/employeeSlice"
-import states from "../../../data/statesList.json"
-import departments from "../../../data/departmentsList.json"
-import DropdownMenu from "../DropdownMenu"
+import { states } from "../../../data/statesList"
+import { departments } from "../../../data/departmentsList"
 
 export default function Form() {
     const [newFirstName, setNewFirstName] = useState("")
@@ -77,18 +77,24 @@ export default function Form() {
                         <input type="text" id="addressCity" name="addressCity" value={newAddressCity} 
                         onChange={(e) => setNewAddressCity(e.target.value)} />
 
-                        <label htmlFor="addressState">State</label>
-                        <DropdownMenu name="addressState" id="addressState" data={ states } 
-                        onChange={(e) => setNewAddressState(e.target.value)}/>
+                        <label>State</label>
+                        <Select
+                            options={states}
+                            values={[]}
+                            onChange={(selectedValues) => setNewAddressState(selectedValues[0] ? selectedValues[0].value : "")}
+                        />
 
                         <label htmlFor="addressZipCode">Zip Code</label>
                         <input type="number" id="addressZipCode" name="addressZipCode" value={newAddressZipCode} 
                         onChange={(e) => setNewAddressZipCode(e.target.value)} />
                     </fieldset>
 
-                    <label htmlFor="department">Department</label>
-                    <DropdownMenu name="department" id="department" data={ departments }
-                    onChange={(e) => setNewDepartment(e.target.value)}/>
+                    <label>Department</label>
+                    <Select
+                        options={departments}
+                        values={[]}
+                        onChange={(selectedValues) => setNewDepartment(selectedValues[0] ? selectedValues[0].value : "")}
+                    />
                 </div> 
                 <button>Save</button>
             </form>	

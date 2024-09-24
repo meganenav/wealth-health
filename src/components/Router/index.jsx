@@ -4,6 +4,7 @@ import "../../sass/main.scss"
 import Header from "../../components/Header"
 import CreateEmployee from "../../pages/CreateEmployee/"
 import EmployeeList from "../../pages/EmployeeList/"
+import Error from "../../components/Error"
 
 export default function Routing() {
   return (
@@ -12,6 +13,7 @@ export default function Routing() {
         <Routes>
           <Route path="/" element={<CreateEmployee />} />
           <Route path="/employee-list" element={<EmployeeList />} />
+          <Route path="*" element={<Error/>} />
         </Routes>
     </Router>
   )
