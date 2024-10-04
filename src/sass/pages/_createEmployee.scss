@@ -34,7 +34,7 @@ form {
         }
     }
 
-    button {
+    .btn-submit {
         margin-top: 20px;
         background-color: $dark-grey;
         color: $light-blue;
@@ -42,5 +42,11 @@ form {
         height: 30px;
         border-radius: 5px;
         font-size: 1em;
+    }
+
+    .error {
+        color: red;
+        font-size: 0.75em;
+        font-weight: bold;
     }
 }

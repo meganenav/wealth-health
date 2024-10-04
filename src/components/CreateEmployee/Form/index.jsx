@@ -17,11 +17,31 @@ export default function Form() {
     const [newAddressState, setNewAddressState] = useState("")
     const [newAddressZipCode, setNewAddressZipCode] = useState("")
     const [newDepartment, setNewDepartment] = useState("")
+    const [errors, setErrors] = useState({})
 
     const dispatch = useDispatch()
 
+    const validateForm = () => {
+        const newErrors = {}
+        if (!newFirstName) newErrors.firstName = "First Name is required"
+        if (!newLastName) newErrors.lastName = "Last Name is required"
+        if (!newAddressStreet) newErrors.addressStreet = "Street is required"
+        if (!newAddressCity) newErrors.addressCity = "City is required"
+        if (!newAddressState) newErrors.addressState = "State is required"
+        if (!newAddressZipCode) newErrors.addressZipCode = "Zip Code is required"
+        if (!newDepartment) newErrors.department = "Department is required"
+        
+        setErrors(newErrors)
+        return Object.keys(newErrors).length === 0
+    }
+
     const handleSubmit = (e) => {
         e.preventDefault()
+
+        if (!validateForm()) {
+            return
+        }
+
         const employeeData = {
             firstName: newFirstName,
             lastName: newLastName,
@@ -47,6 +67,7 @@ export default function Form() {
         setNewAddressState("")
         setNewAddressZipCode("")
         setNewDepartment("")
+        setErrors({})
     }
 
 	return (
@@ -56,10 +77,12 @@ export default function Form() {
                     <label htmlFor="firstName">First Name</label>
                     <input type="text" id="firstName" name="firstName" value={newFirstName} 
                     onChange={(e) => setNewFirstName(e.target.value)} />
-                    
+                    {errors.firstName && <div className="error">{errors.firstName}</div>}
+
                     <label htmlFor="lastName">Last Name</label>
                     <input type="text" id="lastName" name="lastName" value={newLastName} 
                     onChange={(e) => setNewLastName(e.target.value)} />
+                    {errors.lastName && <div className="error">{errors.lastName}</div>}
 
                     <label>Date of Birth</label>
                     <DatePicker selected={newDateOfBirth} onChange={(date) => setNewDateOfBirth(date)} />
@@ -73,10 +96,12 @@ export default function Form() {
                         <label htmlFor="addressStreet">Street</label>
                         <input type="text" id="addressStreet" name="addressStreet" value={newAddressStreet} 
                         onChange={(e) => setNewAddressStreet(e.target.value)} />
+                        {errors.addressStreet && <div className="error">{errors.addressStreet}</div>}
 
                         <label htmlFor="addressCity">City</label>
                         <input type="text" id="addressCity" name="addressCity" value={newAddressCity} 
                         onChange={(e) => setNewAddressCity(e.target.value)} />
+                        {errors.addressCity && <div className="error">{errors.addressCity}</div>}
 
                         <label>State</label>
                         <Select
@@ -84,10 +109,12 @@ export default function Form() {
                             values={[]}
                             onChange={(selectedValues) => setNewAddressState(selectedValues[0] ? selectedValues[0].value : "")}
                         />
+                        {errors.addressState && <div className="error">{errors.addressState}</div>}
 
                         <label htmlFor="addressZipCode">Zip Code</label>
                         <input type="number" id="addressZipCode" name="addressZipCode" value={newAddressZipCode} 
                         onChange={(e) => setNewAddressZipCode(e.target.value)} />
+                        {errors.addressZipCode && <div className="error">{errors.addressZipCode}</div>}
                     </fieldset>
 
                     <label>Department</label>
@@ -96,8 +123,9 @@ export default function Form() {
                         values={[]}
                         onChange={(selectedValues) => setNewDepartment(selectedValues[0] ? selectedValues[0].value : "")}
                     />
+                    {errors.department && <div className="error">{errors.department}</div>}
                 </div> 
-                <button>Save</button>
+                <button className="btn-submit">Save</button>
             </form>	
 		</>
 	)
