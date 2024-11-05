@@ -7,6 +7,7 @@ export default function CreateEmployee() {
         { document.title="HRNet - Create employee" }
     )
 
+	//Displays a form to add an employee
 	return (
 		<main>
 			<div className="container">

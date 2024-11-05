@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom"
 
 export default function Header() {
-
+    //Displays header with navigation links and underlines the link to the active page
 	return (
         <header>
             <h1>HRnet</h1>

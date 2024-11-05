@@ -14,5 +14,10 @@ header {
 		display: flex;
 		color: $light-blue;
 		column-gap: 50px;
+
+		.active-link {
+			font-weight: bold;
+			border-bottom: 2px solid $light-blue;
+		}
 	}
 }

@@ -8,7 +8,7 @@ form {
     }
 
     input {
-        width: 393px;
+        width: 405px;
         height: 25px;
     }
 
@@ -36,16 +36,12 @@ form {
     .address {
         margin-top: 10px;
         
-        input {
+        .input-address {
             width: 376px;
         }
 
         .react-dropdown-select {
             width: 384px;
-
-            input {
-                width: 0px;
-            }
         }
     }
 

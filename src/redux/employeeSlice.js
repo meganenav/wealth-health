@@ -1,5 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit"
 
+/*
+  Implementation of the initial state and reducers.
+  Reducers can handle employees array state and allows to reset store.
+*/
 const initialState = {
     employees: []
 }

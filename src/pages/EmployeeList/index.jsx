@@ -7,6 +7,7 @@ export default function EmployeeList() {
         { document.title="HRNet - Employee List" }
     )
 
+	//Displays employees' list
 	return (
 		<main>
 			<div className="container">
