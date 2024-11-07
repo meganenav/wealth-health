@@ -3,28 +3,28 @@ import { useDispatch } from "react-redux"
 import Select from "react-dropdown-select"
 import DatePicker from "react-datepicker"
 //@ts-ignore
-/*import Modal from "modal-react-component"
-import "modal-react-component/dist/styles/modal-component.css"
-import closeIcon from "modal-react-component/dist/icons/close.svg"*/
+import Modal from "custom-modal-react-component"
+import "custom-modal-react-component/dist/styles/modal-component.css"
+import closeIcon from "custom-modal-react-component/dist/icons/close.svg"
 import "react-datepicker/dist/react-datepicker.css"
 import { addEmployee } from "../../../redux/employeeSlice"
 import { states } from "../../../data/statesList"
 import { departments } from "../../../data/departmentsList"
 
 export default function Form() {
-  const [newFirstName, setNewFirstName] = useState("")
-  const [newLastName, setNewLastName] = useState("")
-  const [newDateOfBirth, setNewDateOfBirth] = useState(new Date())
-  const [newStartDate, setNewStartDate] = useState(new Date())
-  const [newAddressStreet, setNewAddressStreet] = useState("")
-  const [newAddressCity, setNewAddressCity] = useState("")
-  const [newAddressState, setNewAddressState] = useState("")
-  const [newAddressZipCode, setNewAddressZipCode] = useState("")
-  const [newDepartment, setNewDepartment] = useState("")
-  const [errors, setErrors] = useState({})
+    const [newFirstName, setNewFirstName] = useState("")
+    const [newLastName, setNewLastName] = useState("")
+    const [newDateOfBirth, setNewDateOfBirth] = useState(new Date())
+    const [newStartDate, setNewStartDate] = useState(new Date())
+    const [newAddressStreet, setNewAddressStreet] = useState("")
+    const [newAddressCity, setNewAddressCity] = useState("")
+    const [newAddressState, setNewAddressState] = useState("")
+    const [newAddressZipCode, setNewAddressZipCode] = useState("")
+    const [newDepartment, setNewDepartment] = useState("")
+    const [errors, setErrors] = useState({})
 
-  const dispatch = useDispatch()
-  //const modalRef = useRef() 
+    const dispatch = useDispatch()
+    const modalRef = useRef() 
 
     // Validation form implementation
     const validateForm = () => {
@@ -68,9 +68,9 @@ export default function Form() {
 
         dispatch(addEmployee(employeeData))
 
-        /*if (modalRef.current) {
+        if (modalRef.current) {
             modalRef.current.open()
-        }*/
+        }
 
         setNewFirstName("")
         setNewLastName("")
@@ -87,7 +87,7 @@ export default function Form() {
     //Displays form with different fields and calls external components DatePicker, Select and Modal with parameters
 	return (
         <>
-            {/*<Modal ref={modalRef} title="Success" message="Employee created!" theme="light" closeIconPath={closeIcon} />*/}
+            <Modal ref={modalRef} title="Success" message="Employee created!" theme="light" closeIconPath={closeIcon} />
 			<form onSubmit={handleSubmit} id="create-employee">
                 <div className="form-content">
                     <label htmlFor="firstName">First Name</label>
