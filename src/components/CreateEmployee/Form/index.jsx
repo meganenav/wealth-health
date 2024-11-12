@@ -1,12 +1,12 @@
 import React, { useState, useRef } from "react"
 import { useDispatch } from "react-redux"
-import Select from "react-dropdown-select"
+import Select from "react-select"
 import DatePicker from "react-datepicker"
+import "react-datepicker/dist/react-datepicker.css"
 //@ts-ignore
 import Modal from "custom-modal-react-component"
 import "custom-modal-react-component/dist/styles/modal-component.css"
 import closeIcon from "custom-modal-react-component/dist/icons/close.svg"
-import "react-datepicker/dist/react-datepicker.css"
 import { addEmployee } from "../../../redux/employeeSlice"
 import { states } from "../../../data/statesList"
 import { departments } from "../../../data/departmentsList"
@@ -14,8 +14,8 @@ import { departments } from "../../../data/departmentsList"
 export default function Form() {
     const [newFirstName, setNewFirstName] = useState("")
     const [newLastName, setNewLastName] = useState("")
-    const [newDateOfBirth, setNewDateOfBirth] = useState(new Date())
-    const [newStartDate, setNewStartDate] = useState(new Date())
+    const [newDateOfBirth, setNewDateOfBirth] = useState("")
+    const [newStartDate, setNewStartDate] = useState("")
     const [newAddressStreet, setNewAddressStreet] = useState("")
     const [newAddressCity, setNewAddressCity] = useState("")
     const [newAddressState, setNewAddressState] = useState("")
@@ -31,6 +31,8 @@ export default function Form() {
         const newErrors = {}
         if (!newFirstName) newErrors.firstName = "First Name is required"
         if (!newLastName) newErrors.lastName = "Last Name is required"
+        if (!newDateOfBirth) newErrors.dateOfBirth = "Date of birth is required"
+        if (!newStartDate) newErrors.startDate = "Start date is required"
         if (!newAddressStreet) newErrors.addressStreet = "Street is required"
         if (!newAddressCity) newErrors.addressCity = "City is required"
         if (!newAddressState) newErrors.addressState = "State is required"
@@ -60,13 +62,15 @@ export default function Form() {
             address: {
                 street: newAddressStreet,
                 city: newAddressCity,
-                state: newAddressState,
+                state: newAddressState.value,
                 zipCode: newAddressZipCode,
             },
-            department: newDepartment,
+            department: newDepartment.value,
         }
 
         dispatch(addEmployee(employeeData))
+
+        e.target.reset()
 
         if (modalRef.current) {
             modalRef.current.open()
@@ -74,13 +78,13 @@ export default function Form() {
 
         setNewFirstName("")
         setNewLastName("")
-        setNewDateOfBirth(new Date())
-        setNewStartDate(new Date())
+        setNewDateOfBirth("")
+        setNewStartDate("")
         setNewAddressStreet("")
         setNewAddressCity("")
-        setNewAddressState("")
+        setNewAddressState(null)
         setNewAddressZipCode("")
-        setNewDepartment("")
+        setNewDepartment(null)
         setErrors({})
     }
 
@@ -102,9 +106,11 @@ export default function Form() {
 
                     <label>Date of Birth</label>
                     <DatePicker selected={newDateOfBirth} onChange={(date) => setNewDateOfBirth(date)} />
+                    {errors.dateOfBirth && <div className="error">{errors.dateOfBirth}</div>}
 
                     <label>Start Date</label>
                     <DatePicker selected={newStartDate} onChange={(date) => setNewStartDate(date)} />
+                    {errors.startDate && <div className="error">{errors.startDate}</div>}
 
                     <fieldset className="address">
                         <legend>Address</legend>
@@ -121,9 +127,9 @@ export default function Form() {
 
                         <label>State</label>
                         <Select
+                            value={newAddressState}
+                            onChange={setNewAddressState}
                             options={states}
-                            values={[]}
-                            onChange={(selectedValues) => setNewAddressState(selectedValues[0] ? selectedValues[0].value : "")}
                         />
                         {errors.addressState && <div className="error">{errors.addressState}</div>}
 
@@ -135,9 +141,9 @@ export default function Form() {
 
                     <label>Department</label>
                     <Select
+                        value={newDepartment}
+                        onChange={setNewDepartment}
                         options={departments}
-                        values={[]}
-                        onChange={(selectedValues) => setNewDepartment(selectedValues[0] ? selectedValues[0].value : "")}
                     />
                     {errors.department && <div className="error">{errors.department}</div>}
                 </div> 

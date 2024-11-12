@@ -12,18 +12,13 @@ form {
         height: 25px;
     }
 
-    input, .react-dropdown-select {
+    input {
         border-radius: 5px;
         border: 2px solid $middle-grey;
     }
 
     .react-datepicker-wrapper {
         width: 100%;
-    }
-
-    .react-dropdown-select {
-        min-height: 25px;
-        background-color: white;
     }
 
     label {

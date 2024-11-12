@@ -2,13 +2,8 @@ import { useSelector } from "react-redux"
 import { AgGridReact } from "ag-grid-react"
 import "ag-grid-community/styles/ag-grid.css"
 import "ag-grid-community/styles/ag-theme-alpine.css"
-//import { useDispatch } from "react-redux"
-//import { resetStore } from "../../../redux/employeeSlice"
 
 export default function Table() {
-    /* Commented elements (excluding documentation) are ready if it will become necessary to empty data in the store later in the project */
-	//const dispatch = useDispatch()
-
     // Gets employees from the store
 	const employees = useSelector((state) => state.employee.employees)
     // Defines columns for the table with parameters
@@ -30,8 +25,6 @@ export default function Table() {
         filter: true,
         resizable: true
     }
-
-	//dispatch(resetStore())
 
     // Table implementation with data and parameters, calls the external component AgGridReact
 	return (
