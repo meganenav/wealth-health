@@ -3,7 +3,6 @@ import { useDispatch } from "react-redux"
 import Select from "react-select"
 import DatePicker from "react-datepicker"
 import "react-datepicker/dist/react-datepicker.css"
-//@ts-ignore
 import Modal from "custom-modal-react-component"
 import "custom-modal-react-component/dist/styles/modal-component.css"
 import closeIcon from "custom-modal-react-component/dist/icons/close.svg"
@@ -68,10 +67,12 @@ export default function Form() {
             department: newDepartment.value,
         }
 
+        // Saves employees in the store
         dispatch(addEmployee(employeeData))
 
         e.target.reset()
 
+        // Opens the modal
         if (modalRef.current) {
             modalRef.current.open()
         }
